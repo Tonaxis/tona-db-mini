@@ -22,9 +22,7 @@ export function loadConfig(): Required<Config> {
       userConfig = JSON.parse(raw) as Config;
     } catch (e: any) {
       console.error(
-        `Failed to parse ${CONFIG_FILE}: ${
-          e.code === "EPERM" ? "Permission denied" : e.message
-        }\n\nRaw contents:\n${raw}`
+        `Failed to parse config file "${configPath}": ${e.message}\nUsing default config instead.`
       );
     }
   }

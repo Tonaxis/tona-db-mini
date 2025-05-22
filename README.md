@@ -46,11 +46,13 @@ To configure the module, you can create a configuration file named `tdb-mini.con
 
 ```json
 {
-  "dbPath": "./db.json"
+  "dbPath": "./tdb-mini-data",
+  "prettyJson": false
 }
 ```
 
 - `dbPath` - The path to the database folder.
+- `prettyJson` - A boolean value that determines whether the JSON data should be formatted with indentation.
 
 ## Usages
 
@@ -97,7 +99,7 @@ users.add([{ name: "Jane Doe", age: 25 }, { name: "Bob Smith", age: 35 }]);
 
 ### Get data from collection
 To get data from a collection, you can use the `get` method.
-The `get` method takes an **Filter** as an argument. If no filter is provided, it will return all data from the collection.
+The `get` method takes an [Filter](#filters) as an argument. If no filter is provided, it will return all data from the collection.
 
 ```ts
 import db from "tona-db-mini";
@@ -119,7 +121,7 @@ const allUsers = users.get();
 
 ### Update data in collection
 To update data in a collection, you can use the `update` method.
-The `update` method takes a **Filter** and a partial data object as arguments.
+The `update` method takes a [Filter](#filters) and a partial data object as arguments.
 
 ```ts
 import db from "tona-db-mini";
@@ -139,7 +141,7 @@ users.update({ name: "John Doe" }, { age: 31 });
 
 ### Delete data from collection
 To delete data from a collection, you can use the `del` method.
-The `del` method takes an **Filter** as an argument. If no filter is provided, it will delete all data from the collection.
+The `del` method takes an [Filter](#filters) as an argument. If no filter is provided, it will delete all data from the collection.
 
 ```ts
 import db from "tona-db-mini";

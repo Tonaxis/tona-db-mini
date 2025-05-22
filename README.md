@@ -1,15 +1,14 @@
 <div align="center">
 <a href="https://github.com/tonaxis/tona-db-mini">
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./docs/images/tona_db_mini_logo_dark.svg" alt="Logo of Tona DB mini" width="450px">
-  <source media="(prefers-color-scheme: light)" srcset="./docs/images/tona_db_mini_logo_light.svg" alt="Logo of Tona DB mini" width="450px">
-  <img alt="Logo of Tona DB mini" width="450px" src="./docs/images/tona_db_mini_logo_light.svg">
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Tonaxis/tona-db-mini/main/docs/images/tona_db_mini_logo_dark.svg" alt="Logo of Tona DB mini" width="450px">
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/Tonaxis/tona-db-mini/main/docs/images/tona_db_mini_logo_light.svg" alt="Logo of Tona DB mini" width="450px">
+  <img alt="Logo of Tona DB mini" width="450px" src="https://raw.githubusercontent.com/Tonaxis/tona-db-mini/main/docs/images/tona_db_mini_logo_light.svg">
 </picture>
 </a>
 
 **A simple library to store and retrieve JSON data**
 
-![Static Badge](https://img.shields.io/badge/BETA-Status?label=Status&color=yellow)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 [![GitHub release](https://img.shields.io/github/v/release/tonaxis/tona-db-mini)](https://github.com/tonaxis/tona-db-mini/releases)
 ![](https://img.shields.io/badge/Typescript-5.8.3-3178C6?style=flat-circle&logo=typescript&logoColor=3178C6)

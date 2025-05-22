@@ -7,10 +7,7 @@
   "scripts": {
     "build": "tsc",
     "test": "vitest",
-    "test:ui": "vitest --ui",
-    "publish:patch": "npm version patch && git push origin main --follow-tags",
-    "publish:minor": "npm version minor && git push origin main --follow-tags",
-    "publish:major": "npm version major && git push origin main --follow-tags"
+    "test:ui": "vitest --ui"
   },
   "author": "Tonaxis",
   "license": "ISC",
@@ -50,5 +47,24 @@
     "tsx": "^4.19.4",
     "typescript": "^5.8.3",
     "vitest": "^3.1.4"
-  }
+  },
+  "keywords": [
+    "database",
+    "json",
+    "local-storage",
+    "file-based",
+    "lightweight",
+    "minimal",
+    "embedded",
+    "tinydb",
+    "jsondb",
+    "lowdb",
+    "nodejs",
+    "typescript",
+    "flat-file",
+    "persistence",
+    "storage",
+    "offline",
+    "configurable"
+  ]
 }

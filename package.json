@@ -7,16 +7,46 @@
   "scripts": {
     "build": "tsc",
     "test": "vitest",
-    "test:ui": "vitest --ui"
+    "test:ui": "vitest --ui",
+    "publish:patch": "npm version patch && git push origin main --follow-tags",
+    "publish:minor": "npm version minor && git push origin main --follow-tags",
+    "publish:major": "npm version major && git push origin main --follow-tags"
   },
   "author": "Tonaxis",
   "license": "ISC",
   "files": [
     "dist"
   ],
+  "release": {
+    "branches": [
+      "main"
+    ],
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/changelog",
+      "@semantic-release/npm",
+      "@semantic-release/github",
+      [
+        "@semantic-release/git",
+        {
+          "assets": [
+            "package.json",
+            "CHANGELOG.md"
+          ],
+          "message": "chore(release): ${nextRelease.version} [skip ci]"
+        }
+      ]
+    ]
+  },
   "devDependencies": {
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^11.0.2",
+    "@semantic-release/npm": "^12.0.1",
     "@types/node": "^22.15.21",
     "@vitest/ui": "^3.1.4",
+    "semantic-release": "^24.2.4",
     "tsx": "^4.19.4",
     "typescript": "^5.8.3",
     "vitest": "^3.1.4"

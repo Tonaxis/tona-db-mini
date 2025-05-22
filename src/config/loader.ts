@@ -16,12 +16,15 @@ export function loadConfig(): Required<Config> {
   let userConfig: Config = {};
 
   if (fs.existsSync(configPath)) {
+    let raw: string = "";
     try {
-      const raw = fs.readFileSync(configPath, "utf-8");
+      raw = fs.readFileSync(configPath, "utf-8");
       userConfig = JSON.parse(raw) as Config;
-    } catch (e) {
-      throw new Error(
-        `Failed to parse ${CONFIG_FILE}: ${(e as Error).message}`
+    } catch (e: any) {
+      console.error(
+        `Failed to parse ${CONFIG_FILE}: ${
+          e.code === "EPERM" ? "Permission denied" : e.message
+        }\n\nRaw contents:\n${raw}`
       );
     }
   }

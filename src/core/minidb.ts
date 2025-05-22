@@ -1,4 +1,6 @@
+import fs from "fs";
 import { loadConfig } from "../config/loader";
+import { Config } from "../config/schema";
 import { Collection } from "./collection";
 import { NonArrayObject } from "./types";
 
@@ -9,9 +11,18 @@ import { NonArrayObject } from "./types";
 export class MiniDB {
   private baseDir: string;
 
-  constructor() {
-    const config = loadConfig();
-    this.baseDir = config.baseDir;
+  /**
+   * Main entry point to access collections.
+   * Automatically loads user configuration and handles base directory setup.
+   * @param config Configuration options
+   */
+  constructor(config?: Config) {
+    const mergedConfig = { ...loadConfig(), ...config };
+    this.baseDir = mergedConfig.baseDir;
+
+    if (!fs.existsSync(this.baseDir)) {
+      fs.mkdirSync(this.baseDir, { recursive: true });
+    }
   }
 
   /**

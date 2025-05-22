@@ -1,24 +1,33 @@
-import { describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it } from "vitest";
 import { MiniDB } from "../src/core/minidb";
+import { createIsolatedDir, removeDir } from "./test-utils";
 
-const db = new MiniDB();
-const testCollection = db.collection<any>("test");
+let tempDir: string;
+
+afterEach(() => {
+  if (tempDir) removeDir(tempDir);
+});
 
 describe("Collection", () => {
   it("adds a single object", () => {
-    testCollection.add({ name: "Alice" });
-    expect(testCollection.get()).toEqual([{ name: "Alice" }]);
+    tempDir = createIsolatedDir();
+    const db = new MiniDB({ baseDir: tempDir });
+    const col = db.collection<{ name: string }>("addSingle");
+    col.add({ name: "Alice" });
+    expect(col.get()).toEqual([{ name: "Alice" }]);
   });
 
   it("adds multiple objects", () => {
-    testCollection.add([{ name: "Bob" }, { name: "Charlie" }]);
-    expect(testCollection.get()).toHaveLength(2);
-    expect(testCollection.get()).toEqual(
-      expect.arrayContaining([{ name: "Bob" }, { name: "Charlie" }])
-    );
+    tempDir = createIsolatedDir();
+    const db = new MiniDB({ baseDir: tempDir });
+    const col = db.collection<{ name: string }>("addMultiple");
+    col.add([{ name: "Bob" }, { name: "Charlie" }]);
+    expect(col.get()).toHaveLength(2);
   });
 
   it("adds an empty object", () => {
+    tempDir = createIsolatedDir();
+    const db = new MiniDB({ baseDir: tempDir });
     const col = db.collection<object>("empties");
     col.del();
     col.add({});
@@ -26,6 +35,8 @@ describe("Collection", () => {
   });
 
   it("adds multiple empty objects", () => {
+    tempDir = createIsolatedDir();
+    const db = new MiniDB({ baseDir: tempDir });
     const col = db.collection<object>("empties2");
     col.del();
     col.add([{}, {}]);
@@ -35,6 +46,8 @@ describe("Collection", () => {
   it("rejects circular references", () => {
     const a: any = {};
     a.self = a;
+    tempDir = createIsolatedDir();
+    const db = new MiniDB({ baseDir: tempDir });
     const col = db.collection<any>("bad");
     col.del();
 
@@ -42,6 +55,8 @@ describe("Collection", () => {
   });
 
   it("returns all when no filter", () => {
+    tempDir = createIsolatedDir();
+    const db = new MiniDB({ baseDir: tempDir });
     const col = db.collection<{ name: string }>("all");
     col.del();
     col.add([{ name: "A" }, { name: "B" }]);
@@ -49,6 +64,8 @@ describe("Collection", () => {
   });
 
   it("returns matching items with filter (object filter)", () => {
+    tempDir = createIsolatedDir();
+    const db = new MiniDB({ baseDir: tempDir });
     const col = db.collection<{ type: string }>("filter");
     col.del();
     col.add([{ type: "a" }, { type: "b" }]);
@@ -56,6 +73,8 @@ describe("Collection", () => {
   });
 
   it("returns matching items with filter (function filter)", () => {
+    tempDir = createIsolatedDir();
+    const db = new MiniDB({ baseDir: tempDir });
     const col = db.collection<{ type: string }>("filterFunc");
     col.del();
     col.add([{ type: "a" }, { type: "b" }]);
@@ -64,6 +83,8 @@ describe("Collection", () => {
   });
 
   it("returns empty array for unmatched filter", () => {
+    tempDir = createIsolatedDir();
+    const db = new MiniDB({ baseDir: tempDir });
     const col = db.collection<{ age: number }>("no-match");
     col.del();
     col.add([{ age: 30 }]);
@@ -71,6 +92,8 @@ describe("Collection", () => {
   });
 
   it("deletes matching item (object filter)", () => {
+    tempDir = createIsolatedDir();
+    const db = new MiniDB({ baseDir: tempDir });
     const col = db.collection<{ id: number }>("del1");
     col.del();
     col.add([{ id: 1 }, { id: 2 }]);
@@ -79,6 +102,8 @@ describe("Collection", () => {
   });
 
   it("deletes matching item (function filter)", () => {
+    tempDir = createIsolatedDir();
+    const db = new MiniDB({ baseDir: tempDir });
     const col = db.collection<{ id: number }>("delFunc");
     col.del();
     col.add([{ id: 1 }, { id: 2 }]);
@@ -87,6 +112,8 @@ describe("Collection", () => {
   });
 
   it("delete with non-matching filter does nothing", () => {
+    tempDir = createIsolatedDir();
+    const db = new MiniDB({ baseDir: tempDir });
     const col = db.collection<{ id: number }>("del2");
     col.del();
     col.add([{ id: 1 }]);
@@ -95,6 +122,8 @@ describe("Collection", () => {
   });
 
   it("delete without filter deletes all", () => {
+    tempDir = createIsolatedDir();
+    const db = new MiniDB({ baseDir: tempDir });
     const col = db.collection<{ val: string }>("del-all");
     col.del();
     col.add([{ val: "a" }, { val: "b" }]);
@@ -103,6 +132,8 @@ describe("Collection", () => {
   });
 
   it("updates matching items with object filter", () => {
+    tempDir = createIsolatedDir();
+    const db = new MiniDB({ baseDir: tempDir });
     const col = db.collection<{ id: number; val: string }>("update1");
     col.del();
     col.add([
@@ -114,6 +145,8 @@ describe("Collection", () => {
   });
 
   it("updates matching items with function filter", () => {
+    tempDir = createIsolatedDir();
+    const db = new MiniDB({ baseDir: tempDir });
     const col = db.collection<{ id: number; val: string }>("updateFunc");
     col.del();
     col.add([
@@ -125,6 +158,8 @@ describe("Collection", () => {
   });
 
   it("supports deeply nested objects", () => {
+    tempDir = createIsolatedDir();
+    const db = new MiniDB({ baseDir: tempDir });
     const col = db.collection<any>("nested");
     col.del();
     col.add({ user: { profile: { name: "Bob" } } });

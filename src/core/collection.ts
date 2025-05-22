@@ -30,6 +30,7 @@ export class Collection<T extends NonArrayObject> {
   private read(): T[] {
     if (!fs.existsSync(this.filePath)) {
       this.write([]);
+      return [];
     }
 
     const data = fs.readFileSync(this.filePath, "utf-8");

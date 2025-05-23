@@ -29,7 +29,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          fetch-depth: 0  # important pour récupérer tous les commits
+          fetch-depth: 0  
 
       - uses: actions/setup-node@v3
         with:

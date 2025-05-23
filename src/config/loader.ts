@@ -1,7 +1,7 @@
 import * as fs from "fs";
 import * as path from "path";
+import { mergeDefaultConfig } from "./merger";
 import type { Config } from "./schema";
-import { defaultConfig } from "./schema";
 
 const CONFIG_FILE = "tdb-mini.config.json";
 
@@ -9,9 +9,9 @@ const CONFIG_FILE = "tdb-mini.config.json";
  * Loads the user's configuration file and merges it with the default configuration.
  * If the file does not exist, the default configuration is used.
  *
- * @returns {Required<Config>} The complete configuration with defaults applied.
+ * @returns {NonNullable<Required<Config>>} The complete configuration with defaults applied.
  */
-export function loadConfig(): Required<Config> {
+export function loadConfig(): NonNullable<Required<Config>> {
   const configPath = path.resolve(process.cwd(), CONFIG_FILE);
   let userConfig: Config = {};
 
@@ -27,8 +27,5 @@ export function loadConfig(): Required<Config> {
     }
   }
 
-  return {
-    ...defaultConfig,
-    ...userConfig,
-  };
+  return mergeDefaultConfig(userConfig);
 }

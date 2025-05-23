@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import { loadConfig } from "../config/loader";
+import { Config } from "../config/schema";
 import { Filter, NonArrayObject } from "./types";
 
 /**
@@ -8,14 +9,18 @@ import { Filter, NonArrayObject } from "./types";
  */
 export class Collection<T extends NonArrayObject> {
   private filePath: string;
-  private config = loadConfig();
+  private config: NonNullable<Required<Config>>;
 
   /**
    * @param collectionName Name of the collection (used as file name)
-   * @param baseDir Directory where the JSON file will be stored
+   * @param config The configuration options
    */
-  constructor(collectionName: string, baseDir: string) {
-    const dir = path.resolve(baseDir);
+  constructor(
+    collectionName: string,
+    config: NonNullable<Required<Config>> = loadConfig()
+  ) {
+    this.config = config;
+    const dir = path.resolve(this.config.baseDir);
     if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
 
     this.filePath = path.resolve(dir, `${collectionName}.json`);

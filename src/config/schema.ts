@@ -12,7 +12,7 @@ export interface Config {
 /**
  * Default configuration used when the user does not provide one.
  */
-export const defaultConfig: Required<Config> = {
+export const defaultConfig: NonNullable<Required<Config>> = {
   baseDir: "./tdb-mini-data",
   prettyJson: false,
 };

@@ -62,4 +62,23 @@ describe("Config loading", () => {
     const written = fs.readFileSync(filePath, "utf-8");
     expect(written).toBe(JSON.stringify([{ b: 2 }]));
   });
+
+  it("merges config file values over defaults", () => {
+    tempDir = createIsolatedDir();
+    fs.writeFileSync(
+      CONFIG_FILE,
+      JSON.stringify({ baseDir: tempDir, prettyJson: false })
+    );
+    const config = loadConfig();
+    expect(config.baseDir).toBe(tempDir);
+    expect(config.prettyJson).toBe(false);
+  });
+
+  it("merges incomplete config values over defaults", () => {
+    tempDir = createIsolatedDir();
+    fs.writeFileSync(CONFIG_FILE, JSON.stringify({ baseDir: tempDir }));
+    const config = loadConfig();
+    expect(config.baseDir).toBe(tempDir);
+    expect(config.prettyJson).toBe(defaultConfig.prettyJson);
+  });
 });

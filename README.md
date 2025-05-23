@@ -181,3 +181,18 @@ const specificUser = users.get({ name: "John Doe" });
 // Get users with age greater than 30
 const olderUsers = users.get((user) => user.age > 30);
 ```
+
+### Usage in JavaScript
+**Tona DB Mini** can also be used in JavaScript. Just add ``.default`` to the result of ``require("tona-db-mini")`` to access the default export.
+
+```js
+const db = require("tona-db-mini").default;
+
+const users = db.collection("users");
+
+// Add a new user
+users.add({ name: "John Doe", age: 30 });
+
+// Get user by name
+const user = users.get({ name: "John Doe" });
+```

@@ -26,6 +26,7 @@
     - [Update data in collection](#update-data-in-collection)
     - [Delete data from collection](#delete-data-from-collection)
     - [Filters](#filters)
+    - [Usage in JavaScript](#usage-in-javascript)
 
 
 

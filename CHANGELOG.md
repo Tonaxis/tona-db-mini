@@ -1,3 +1,10 @@
+## [0.0.7](https://github.com/Tonaxis/tona-db-mini/compare/v0.0.6...v0.0.7) (2025-05-23)
+
+
+### Bug Fixes
+
+* remove unnecessary error check ([ec9d230](https://github.com/Tonaxis/tona-db-mini/commit/ec9d230df1c8c1ffe5af99c5c604aa2170a5eb35))
+
 ## [0.0.6](https://github.com/Tonaxis/tona-db-mini/compare/v0.0.5...v0.0.6) (2025-05-23)
 
 

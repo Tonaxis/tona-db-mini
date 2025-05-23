@@ -1,3 +1,10 @@
+## [0.0.6](https://github.com/Tonaxis/tona-db-mini/compare/v0.0.5...v0.0.6) (2025-05-23)
+
+
+### Bug Fixes
+
+* prevent multiple reads of config ([3ddcf47](https://github.com/Tonaxis/tona-db-mini/commit/3ddcf47301d1876eab477d6b1ca69221c01e4ad4))
+
 ## [0.0.5](https://github.com/Tonaxis/tona-db-mini/compare/v0.0.4...v0.0.5) (2025-05-22)
 
 

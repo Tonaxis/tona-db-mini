@@ -1,6 +1,6 @@
 {
   "name": "tona-db-mini",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Tona-DB mini is a JavaScript library for simulating small local databases in JSON.",
   "main": "dist/index.js",
   "types": "dist/index.d.js",

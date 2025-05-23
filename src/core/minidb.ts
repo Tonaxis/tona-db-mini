@@ -20,10 +20,6 @@ export class MiniDB {
   constructor(config: Partial<Config> = {}) {
     this.config = mergeDefaultConfig({ ...loadConfig(), ...config });
 
-    if (!this.config.baseDir) {
-      throw new Error("Invalid configuration provided.");
-    }
-
     if (!fs.existsSync(this.config.baseDir)) {
       fs.mkdirSync(this.config.baseDir, { recursive: true });
     }

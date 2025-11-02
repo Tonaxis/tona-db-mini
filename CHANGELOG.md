@@ -1,3 +1,10 @@
+# [0.1.0](https://github.com/Tonaxis/tona-db-mini/compare/v0.0.7...v0.1.0) (2025-11-02)
+
+
+### Features
+
+* add compatibily with deno ([fe5c6a5](https://github.com/Tonaxis/tona-db-mini/commit/fe5c6a5e3213068ed7940ceb078416b82318e4c1))
+
 ## [0.0.7](https://github.com/Tonaxis/tona-db-mini/compare/v0.0.6...v0.0.7) (2025-05-23)
 
 

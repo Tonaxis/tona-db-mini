@@ -16,17 +16,19 @@
 
 
 ## Summary
+- [Summary](#summary)
 - [Explanation](#explanation)
-- [Configuration](#configuration)
 - [Installation](#installation)
-- [Usage](#usage)
-    - [Basic Usage](#basic-usage)
-    - [Add data to collection](#add-data-to-collection)
-    - [Get data from collection](#get-data-from-collection)
-    - [Update data in collection](#update-data-in-collection)
-    - [Delete data from collection](#delete-data-from-collection)
-    - [Filters](#filters)
-    - [Usage in JavaScript](#usage-in-javascript)
+- [Configuration](#configuration)
+- [Usages](#usages)
+  - [Basic Usage](#basic-usage)
+  - [Add data to collection](#add-data-to-collection)
+  - [Get data from collection](#get-data-from-collection)
+  - [Update data in collection](#update-data-in-collection)
+  - [Delete data from collection](#delete-data-from-collection)
+  - [Filters](#filters)
+- [Compatibility](#compatibility)
+  - [Example in CommonJS](#example-in-commonjs)
 
 
 
@@ -183,8 +185,19 @@ const specificUser = users.get({ name: "John Doe" });
 const olderUsers = users.get((user) => user.age > 30);
 ```
 
-### Usage in JavaScript
-**Tona DB Mini** can also be used in JavaScript. Just add ``.default`` to the result of ``require("tona-db-mini")`` to access the default export.
+## Compatibility
+
+**Tona DB mini** is a very flexible JavaScript/TypeScript module: it works in **Node.js** (backend, scripts, serverless), in **Deno**, with the older **CommonJS** format (`require`), and even with a **TypeScript runtime** like `tsx` without a build step. In short, it fits smoothly into most modern or existing stacks.
+
+| Environment / stack      | Supported? | Usage notes                                   |
+| ------------------------ | ---------- | --------------------------------------------- |
+| **Node.js**              | ✅          | Backend apps, scripts, serverless             |
+| **Deno**                 | ✅          | URL imports, secure runtime                   |
+| **CommonJS** (`require`) | ✅          | No need to migrate to ES Modules              |
+| **TS runtime (tsx)**     | ✅          | Run TypeScript directly, no build step needed |
+
+
+### Example in CommonJS
 
 ```js
 const db = require("tona-db-mini").default;

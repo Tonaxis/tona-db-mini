@@ -1,4 +1,4 @@
-import fs from "fs";
+import fs from "node:fs";
 import { loadConfig } from "../config/loader";
 import { mergeDefaultConfig } from "../config/merger";
 import { Config } from "../config/schema";
